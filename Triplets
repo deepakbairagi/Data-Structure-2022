@@ -1,0 +1,51 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+vector < vector < int >> triplets (vector < int >arr, int target)
+{
+  vector < vector < int >>result;
+  for (int i = 0; i < arr.size () - 3; i++)
+    {
+      int front = 1;
+      int rear = arr.size () - 1;
+      while (front < rear)
+	    {
+	      int sum = arr[i] + arr[front] + arr[rear];
+	      if (sum == target)
+	      {
+	        result.push_back ({arr[i], arr[front], arr[rear]});
+	        front++;
+	        rear--;
+	      }
+	     else if (sum > target)
+	     {
+	      target--;
+	      }
+	    else
+	    {
+	      front++;
+	    }
+	  }
+  }
+  return result;
+}
+
+int
+main ()
+{
+  vector < int >data{1, 2, 3, 4, 5, 6, 7, 8, 9, 15};
+  int sum = 18;
+  auto p = triplets (data, sum);
+  for (auto i:p)
+    {
+    for (auto j:i)
+	{
+	  cout << j << ",";
+	}
+      cout << endl;
+    }
+
+  return 0;
+}
